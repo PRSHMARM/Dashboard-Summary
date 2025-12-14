@@ -18,7 +18,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^3.5.1",
     "web-vitals": "^2.1.4",
-"@mui/x-date-pickers": "^6.19.0",
+"@mui/x-date-pickers": "^7.3.6",
 "dayjs": "^1.11.10"
   },
   "scripts": {
