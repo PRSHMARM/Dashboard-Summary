@@ -57,7 +57,7 @@ export default function Dashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:4000/api/data', {
+      const res = await axios.get('https://summary-dashboard-api.onrender.com/api/data', {
         params: {
           startDate: dateRange.start || undefined,
           endDate: dateRange.end || undefined
