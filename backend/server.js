@@ -86,11 +86,18 @@ app.get('/api/data', (req, res) => {
     tableMap[k].totalBillings += b.amount;
   });
 
-  backlogs.forEach(b => {
-    const k = key(b.customer, b.region, b.product);
-    tableMap[k] ||= { customer: b.customer, region: b.region, product: b.product, totalBookings: 0, totalBillings: 0, backlog: 0 };
-    tableMap[k].backlog += b.amount;
-  });
+const validKeys = new Set(
+  [...bookingsF, ...billingsF].map(
+    b => `${b.customer}|${b.region}|${b.product}`
+  )
+);
+
+backlogs.forEach(b => {
+  const key = `${b.customer}|${b.region}|${b.product}`;
+  if (validKeys.has(key)) {
+    ensure(b.customer, b.region, b.product).backlog += b.amount;
+  }
+});
 
   const tableRows = Object.values(tableMap).map(r => ({
     ...r,
